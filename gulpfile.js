@@ -73,5 +73,5 @@ gulp.task('images', function() {
 });
 
 gulp.task('default', function() {
-  gulp.start('scripts', 'styles', 'images');
+  gulp.start('scripts', 'styles');
 });
