@@ -13,12 +13,12 @@ var uglify    = require('gulp-uglify');
 var minifycss = require('gulp-minify-css');
 var rename    = require('gulp-rename');
 var util      = require('gulp-util');
-var notify    = require('gulp-notify');
 var imagemin  = require('gulp-imagemin');
 var cache     = require('gulp-cache');
 
 // Required system wide variables
-global.appRoot      = path.resolve(__dirname);
+global.appWebRoot   = '/usr/share/nginx';
+global.appRoot      = '/usr/share/nginx/**';
 global.jsAssetRoot  = global.appRoot + '/assets/js/out';
 global.cssAssetRoot = global.appRoot + '/assets/css/out';
 global.jsAssets     = global.jsAssetRoot + '/*.js';
@@ -35,11 +35,10 @@ global.imgAssets    = global.appRoot + '/assets/img';
  */
 gulp.task('scripts', function() {
 
-    return gulp.src([ global.jsAssets, '!' + global.jsMinAssets ])
+    return gulp.src([ global.jsAssets, '!' + global.jsMinAssets ], {base: global.appWebRoot})
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(global.jsAssetRoot))
-        .pipe(notify({ message: 'Javascript Uglify Complete' }))
+        .pipe(gulp.dest(global.appWebRoot))
         .on('error', util.log);
 });
 
@@ -50,11 +49,10 @@ gulp.task('scripts', function() {
  */
 gulp.task('styles', function() {
 
-    return gulp.src([ global.cssAssets, '!' + global.cssMinAssets ])
+    return gulp.src([ global.cssAssets, '!' + global.cssMinAssets ], {base: global.appWebRoot})
         .pipe(rename({suffix: '.min'}))
         .pipe(minifycss())
-        .pipe(gulp.dest(global.cssAssetRoot))
-        .pipe(notify({ message: 'CSS Minify Complete' }))
+        .pipe(gulp.dest(global.appWebRoot))
         .on('error', util.log);
 });
 
