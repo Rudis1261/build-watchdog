@@ -7,7 +7,6 @@
  */
 
 // Required Packages
-var path      = require('path');
 var gulp      = require('gulp');
 var uglify    = require('gulp-uglify');
 var minifycss = require('gulp-minify-css');
@@ -17,8 +16,8 @@ var imagemin  = require('gulp-imagemin');
 var cache     = require('gulp-cache');
 
 // Required system wide variables
-global.appWebRoot   = '/usr/share/nginx';
-global.appRoot      = '/usr/share/nginx/**';
+global.appWebRoot   = '/var/www';
+global.appRoot      = global.appWebRoot + '/**';
 global.jsAssetRoot  = global.appRoot + '/assets/js/out';
 global.cssAssetRoot = global.appRoot + '/assets/css/out';
 global.jsAssets     = global.jsAssetRoot + '/*.js';
