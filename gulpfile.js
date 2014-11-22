@@ -18,7 +18,7 @@ var cache     = require('gulp-cache');
 
 // Required system wide variables
 global.appWebRoot   = '/usr/share/nginx';
-global.appRoot      = '/usr/share/nginx/**';
+global.appRoot      = global.appWebRoot + '/**';
 global.jsAssetRoot  = global.appRoot + '/assets/js/out';
 global.cssAssetRoot = global.appRoot + '/assets/css/out';
 global.jsAssets     = global.jsAssetRoot + '/*.js';
